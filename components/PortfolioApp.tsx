@@ -49,12 +49,29 @@ export default function PortfolioApp() {
       })
     );
 
+    const introImages = gsap.utils.toArray<HTMLElement>('.intro-image');
+    const introTrigger = document.querySelector<HTMLElement>('.intro-section');
+    const parallaxTweens = introImages.map((img, i) =>
+      gsap.to(img, {
+        yPercent: -28 - (i % 4) * 10,
+        rotate: `+=${(i % 2 === 0 ? -1 : 1) * 3}`,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: introTrigger || sections[0],
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 1,
+        },
+      })
+    );
+
     const refresh = setTimeout(() => ScrollTrigger.refresh(), 250);
 
     return () => {
       clearTimeout(refresh);
       triggers.forEach((t) => t.kill());
       reveals.forEach((tween) => tween.scrollTrigger?.kill());
+      parallaxTweens.forEach((tween) => tween.scrollTrigger?.kill());
     };
   }, []);
 

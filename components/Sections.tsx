@@ -4,7 +4,7 @@ import Reveal from './Reveal';
 import Marquee from './Marquee';
 import useMagnetic from '@/lib/useMagnetic';
 import { getLenis } from '@/lib/lenis';
-import { works, stack, meta } from '@/data/works';
+import { works, stack, meta, introImages } from '@/data/works';
 import type { Work } from '@/data/works';
 
 const ArrowUp = ({ size = 11 }: { size?: number }) => (
@@ -33,7 +33,28 @@ export default function Sections({
 
   return (
     <div className="content">
-      <section className="section" data-index="0">
+      <section className="section intro-section" data-index="0">
+        <div
+          className="intro-image intro-img-1"
+          style={{ backgroundImage: `url(${introImages[0]})` }}
+          aria-hidden
+        />
+        <div
+          className="intro-image intro-img-2"
+          style={{ backgroundImage: `url(${introImages[1]})` }}
+          aria-hidden
+        />
+        <div
+          className="intro-image intro-img-3"
+          style={{ backgroundImage: `url(${introImages[2]})` }}
+          aria-hidden
+        />
+        <div
+          className="intro-image intro-img-4"
+          style={{ backgroundImage: `url(${introImages[3]})` }}
+          aria-hidden
+        />
+
         <Reveal as="h1" className="display name">
           {'ARMIN\nPARVARDEGARY'}
         </Reveal>

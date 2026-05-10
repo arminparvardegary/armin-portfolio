@@ -91,6 +91,13 @@ export const sectionImages = [
   img('armin_contact'),
 ];
 
+export const introImages = [
+  'https://picsum.photos/seed/armin_intro_a/640/880?grayscale&blur=1',
+  'https://picsum.photos/seed/armin_intro_b/720/960?grayscale',
+  'https://picsum.photos/seed/armin_intro_c/520/720?grayscale&blur=2',
+  'https://picsum.photos/seed/armin_intro_d/560/780?grayscale',
+];
+
 export const stack = {
   deep: ['Next.js', 'React', 'TypeScript', 'UI Design', 'UX', 'Design Systems'],
   broad: ['Motion', 'AI', 'Brand', 'Adobe CC', 'Project Management'],

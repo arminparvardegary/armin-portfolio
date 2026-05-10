@@ -750,6 +750,78 @@ ul, ol { list-style: none; }
   to { transform: translateX(-50%); }
 }
 
+/* ─── Intro abstract images ────────────────────────── */
+.intro-section { overflow: hidden; }
+
+.intro-image {
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.5) contrast(1.2) saturate(0.45) grayscale(0.35);
+  pointer-events: none;
+  z-index: 1;
+  will-change: transform;
+  box-shadow: 0 30px 60px -20px rgba(0,0,0,0.5);
+}
+
+.intro-img-1 {
+  width: clamp(120px, 18vw, 280px);
+  aspect-ratio: 3/4;
+  top: 14%;
+  left: 5%;
+  transform: rotate(-5deg);
+}
+
+.intro-img-2 {
+  width: clamp(150px, 22vw, 320px);
+  aspect-ratio: 4/5;
+  bottom: 12%;
+  right: 6%;
+  transform: rotate(4deg);
+}
+
+.intro-img-3 {
+  width: clamp(90px, 13vw, 200px);
+  aspect-ratio: 2/3;
+  top: 20%;
+  right: 12%;
+  transform: rotate(8deg);
+}
+
+.intro-img-4 {
+  width: clamp(80px, 11vw, 170px);
+  aspect-ratio: 3/4;
+  bottom: 22%;
+  left: 14%;
+  transform: rotate(-7deg);
+}
+
+.intro-section .display,
+.intro-section .pill {
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 720px) {
+  .intro-img-3, .intro-img-4 { display: none; }
+  .intro-img-1 {
+    width: 100px;
+    top: 11%;
+    left: 4%;
+  }
+  .intro-img-2 {
+    width: 120px;
+    bottom: 11%;
+    right: 4%;
+  }
+}
+
+:root[data-theme="light"] .intro-image {
+  filter: brightness(0.92) contrast(0.95) saturate(0.4) grayscale(0.5);
+  box-shadow: 0 18px 40px -12px rgba(10,10,10,0.18);
+}
+
 /* ─── HoverImage (WebGL distortion) ────────────────── */
 .hover-img {
   position: relative;
