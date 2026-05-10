@@ -2,15 +2,32 @@
 
 import { TOTAL } from '@/lib/constants';
 import { meta } from '@/data/works';
+import { getLenis } from '@/lib/lenis';
+import useMagnetic from '@/lib/useMagnetic';
 import type { Theme } from '@/lib/useTheme';
 
-export function TopBar({ current, go }: { current: number; go: (i: number) => void }) {
+const scrollToTop = () => {
+  const lenis = getLenis();
+  if (lenis) lenis.scrollTo(0);
+  else window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+const scrollToSection = (i: number) => {
+  const lenis = getLenis();
+  const target = document.querySelector(`[data-index="${i}"]`) as HTMLElement | null;
+  if (lenis && target) lenis.scrollTo(target);
+  else target?.scrollIntoView({ behavior: 'smooth' });
+};
+
+export function TopBar({ current }: { current: number }) {
+  const logoRef = useMagnetic<HTMLButtonElement>(0.25);
   return (
     <header className="bar top">
       <div className="brand-row">
         <button
+          ref={logoRef}
           className="logo"
-          onClick={() => go(0)}
+          onClick={scrollToTop}
           aria-label="Back to home"
         >
           Armin
@@ -51,6 +68,7 @@ export function BottomBar({
   mounted: boolean;
   onToggleTheme: () => void;
 }) {
+  const toggleRef = useMagnetic<HTMLButtonElement>(0.3);
   return (
     <footer className="bar bottom">
       <div className="hint" aria-hidden>
@@ -59,6 +77,7 @@ export function BottomBar({
         <span>↑ ↓</span>
       </div>
       <button
+        ref={toggleRef}
         className="theme-toggle"
         onClick={onToggleTheme}
         aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
@@ -70,7 +89,7 @@ export function BottomBar({
   );
 }
 
-export function Dots({ current, go }: { current: number; go: (i: number) => void }) {
+export function Dots({ current }: { current: number }) {
   const labels = ['Index', 'About', 'Stack', 'Work', 'Contact'];
   return (
     <nav className="dots" aria-label="Section navigation">
@@ -78,7 +97,7 @@ export function Dots({ current, go }: { current: number; go: (i: number) => void
         <button
           key={i}
           className={`dot ${current === i ? 'active' : ''}`}
-          onClick={() => go(i)}
+          onClick={() => scrollToSection(i)}
           aria-label={`Go to ${labels[i]}`}
         />
       ))}
