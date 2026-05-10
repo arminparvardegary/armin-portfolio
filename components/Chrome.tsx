@@ -42,7 +42,15 @@ const MoonIcon = () => (
   </svg>
 );
 
-export function BottomBar({ theme, onToggleTheme }: { theme: Theme; onToggleTheme: () => void }) {
+export function BottomBar({
+  theme,
+  mounted,
+  onToggleTheme,
+}: {
+  theme: Theme;
+  mounted: boolean;
+  onToggleTheme: () => void;
+}) {
   return (
     <footer className="bar bottom">
       <div className="hint" aria-hidden>
@@ -54,8 +62,9 @@ export function BottomBar({ theme, onToggleTheme }: { theme: Theme; onToggleThem
         className="theme-toggle"
         onClick={onToggleTheme}
         aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+        suppressHydrationWarning
       >
-        {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+        {mounted ? (theme === 'dark' ? <SunIcon /> : <MoonIcon />) : null}
       </button>
     </footer>
   );

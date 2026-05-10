@@ -14,7 +14,7 @@ import type { Work } from '@/data/works';
 const Scene = dynamic(() => import('@/components/Scene'), { ssr: false });
 
 export default function PortfolioApp() {
-  const { theme, toggle } = useTheme();
+  const { theme, toggle, mounted } = useTheme();
   const [section, setSection] = useState(0);
   const [hoveredWork, setHoveredWork] = useState<number | null>(null);
   const [activeWork, setActiveWork] = useState<Work | null>(null);
@@ -52,7 +52,7 @@ export default function PortfolioApp() {
       />
 
       <TopBar current={section} go={goto} />
-      <BottomBar theme={theme} onToggleTheme={toggle} />
+      <BottomBar theme={theme} mounted={mounted} onToggleTheme={toggle} />
       <Dots current={section} go={goto} />
 
       <CaseDetail work={activeWork} onClose={() => setActiveWork(null)} />
