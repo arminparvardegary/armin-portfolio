@@ -308,14 +308,17 @@ ul, ol { list-style: none; }
   line-height: 1.06;
 }
 
-.contact-mail {
+.display.contact-mail {
+  font-size: clamp(22px, 5.4vw, 60px);
   font-weight: 200;
   letter-spacing: 0.02em;
   display: inline-block;
   border-bottom: 1px solid transparent;
+  overflow-wrap: anywhere;
+  max-width: 100%;
   transition: border-color .35s var(--ease), color .35s var(--ease);
 }
-.contact-mail:hover { border-bottom-color: var(--ink); }
+.display.contact-mail:hover { border-bottom-color: var(--ink); }
 
 .about-meta {
   display: inline-flex;
@@ -614,8 +617,25 @@ ul, ol { list-style: none; }
 
 @media (max-width: 720px) {
   .display { font-size: clamp(34px, 11vw, 64px); }
+  .display.contact-mail { font-size: clamp(20px, 7.2vw, 38px); letter-spacing: 0; }
+  .display.name { font-size: clamp(28px, 9vw, 56px); letter-spacing: 0.18em; }
   .hint { display: none; }
   .bar { padding: 18px 20px; }
+  .section { padding: 0 18px; }
+  .contact-secondary { margin-top: 22px; font-size: 10px; }
+  .stack-cols { gap: 24px; }
+  .about-meta { gap: 10px; }
+  .meta-label {
+    border-right: none;
+    padding-right: 0;
+  }
+  .meta-value { font-size: 11px; }
+}
+
+@media (max-width: 420px) {
+  .display.contact-mail { font-size: 22px; }
+  .work-row { padding: 14px 0; }
+  .work-title { font-size: 18px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
