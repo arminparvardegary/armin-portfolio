@@ -91,11 +91,68 @@ export const sectionImages = [
   img('armin_contact'),
 ];
 
+const svg = (s: string) =>
+  `data:image/svg+xml;utf8,${encodeURIComponent(s.replace(/\s+/g, ' ').trim())}`;
+
 export const introImages = [
-  'https://picsum.photos/seed/armin_intro_a/640/880?grayscale&blur=1',
-  'https://picsum.photos/seed/armin_intro_b/720/960?grayscale',
-  'https://picsum.photos/seed/armin_intro_c/520/720?grayscale&blur=2',
-  'https://picsum.photos/seed/armin_intro_d/560/780?grayscale',
+  // Warm blurred blobs
+  svg(`
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 800'>
+      <defs>
+        <filter id='b' x='-20%' y='-20%' width='140%' height='140%'>
+          <feGaussianBlur stdDeviation='75'/>
+        </filter>
+      </defs>
+      <rect width='600' height='800' fill='#161310'/>
+      <circle cx='180' cy='260' r='240' fill='#ff3d00' opacity='0.5' filter='url(#b)'/>
+      <circle cx='460' cy='620' r='280' fill='#3a261a' opacity='0.75' filter='url(#b)'/>
+      <circle cx='320' cy='460' r='80' fill='#f4f1ec' opacity='0.1' filter='url(#b)'/>
+    </svg>
+  `),
+  // Cool monochrome blobs
+  svg(`
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 720 960'>
+      <defs>
+        <filter id='b' x='-20%' y='-20%' width='140%' height='140%'>
+          <feGaussianBlur stdDeviation='100'/>
+        </filter>
+      </defs>
+      <rect width='720' height='960' fill='#13161a'/>
+      <circle cx='560' cy='280' r='340' fill='#3e4750' opacity='0.85' filter='url(#b)'/>
+      <circle cx='160' cy='760' r='220' fill='#f4f1ec' opacity='0.18' filter='url(#b)'/>
+      <circle cx='420' cy='620' r='120' fill='#ff3d00' opacity='0.22' filter='url(#b)'/>
+    </svg>
+  `),
+  // Geometric diagonal bands
+  svg(`
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 520 720'>
+      <rect width='520' height='720' fill='#1a1814'/>
+      <path d='M-20,180 L540,40 L540,92 L-20,232 Z' fill='#ff3d00' opacity='0.6'/>
+      <path d='M-20,380 L540,280 L540,330 L-20,430 Z' fill='#f4f1ec' opacity='0.11'/>
+      <path d='M-20,540 L540,460 L540,490 L-20,570 Z' fill='#f4f1ec' opacity='0.06'/>
+      <path d='M-20,640 L540,580 L540,605 L-20,665 Z' fill='#ff3d00' opacity='0.18'/>
+    </svg>
+  `),
+  // Radial gradient with concentric rings
+  svg(`
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 560 780'>
+      <defs>
+        <filter id='b' x='-20%' y='-20%' width='140%' height='140%'>
+          <feGaussianBlur stdDeviation='35'/>
+        </filter>
+        <radialGradient id='g' cx='32%' cy='34%' r='85%'>
+          <stop offset='0%' stop-color='#ff3d00' stop-opacity='0.55'/>
+          <stop offset='62%' stop-color='#2a1a14' stop-opacity='1'/>
+          <stop offset='100%' stop-color='#0e0e10' stop-opacity='1'/>
+        </radialGradient>
+      </defs>
+      <rect width='560' height='780' fill='url(#g)'/>
+      <circle cx='180' cy='280' r='80' fill='none' stroke='#f4f1ec' stroke-width='1' opacity='0.34' filter='url(#b)'/>
+      <circle cx='180' cy='280' r='150' fill='none' stroke='#f4f1ec' stroke-width='1' opacity='0.22' filter='url(#b)'/>
+      <circle cx='180' cy='280' r='225' fill='none' stroke='#f4f1ec' stroke-width='1' opacity='0.14' filter='url(#b)'/>
+      <circle cx='180' cy='280' r='305' fill='none' stroke='#f4f1ec' stroke-width='1' opacity='0.08' filter='url(#b)'/>
+    </svg>
+  `),
 ];
 
 export const stack = {
