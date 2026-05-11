@@ -90,7 +90,7 @@ export function BottomBar({
 }
 
 export function Dots({ current }: { current: number }) {
-  const labels = ['Contact', 'Work', 'Stack', 'About', 'Origin'];
+  const labels = ['Index', 'About', 'Stack', 'Work', 'Contact'];
   return (
     <nav className="dots" aria-label="Section navigation">
       {Array.from({ length: TOTAL }).map((_, i) => (

@@ -454,12 +454,11 @@ export default function Scene({
       <ColorCtx.Provider value={colors}>
         <Lights theme={theme} />
 
-        {/* Reversed: scroll-order 0 (top) is Contact, scroll-order 4 (bottom) is the Origin */}
-        <ContactGroup groupRef={(g) => { groups.current[0] = g; }} />
-        <WorkGroup groupRef={(g) => { groups.current[1] = g; }} hovered={hoveredWork} />
+        <IntroGroup groupRef={(g) => { groups.current[0] = g; }} />
+        <AboutGroup groupRef={(g) => { groups.current[1] = g; }} />
         <StackGroup groupRef={(g) => { groups.current[2] = g; }} />
-        <AboutGroup groupRef={(g) => { groups.current[3] = g; }} />
-        <IntroGroup groupRef={(g) => { groups.current[4] = g; }} />
+        <WorkGroup groupRef={(g) => { groups.current[3] = g; }} hovered={hoveredWork} />
+        <ContactGroup groupRef={(g) => { groups.current[4] = g; }} />
 
         <Transitions section={section} groups={groups} />
         <FrameDriver groups={groups} />

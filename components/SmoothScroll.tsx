@@ -15,6 +15,9 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
       syncTouch: false,
+      // Inverted: wheel/touch direction flipped so "scroll down" goes up.
+      wheelMultiplier: -1,
+      touchMultiplier: -1,
     });
     setLenis(lenis);
 
