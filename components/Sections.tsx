@@ -28,6 +28,7 @@ export default function Sections({
   openWork: (w: Work) => void;
 }) {
   const portfolioBtn = useMagnetic<HTMLButtonElement>(0.35);
+  const cvBtn = useMagnetic<HTMLAnchorElement>(0.35);
   const emailRef = useMagnetic<HTMLAnchorElement>(0.2);
   const linkedinRef = useMagnetic<HTMLAnchorElement>(0.4);
 
@@ -58,13 +59,26 @@ export default function Sections({
         <Reveal as="h1" className="display name">
           {'ARMIN\nPARVARDEGARY'}
         </Reveal>
-        <button
-          ref={portfolioBtn}
-          className="pill"
-          onClick={() => scrollTo('[data-index="3"]')}
-        >
-          Portfolio
-        </button>
+        <div className="intro-actions">
+          <button
+            ref={portfolioBtn}
+            className="pill"
+            onClick={() => scrollTo('[data-index="3"]')}
+          >
+            Portfolio
+          </button>
+          <a
+            ref={cvBtn}
+            href="/cv.pdf"
+            download="Armin_Parvardegary_CV.pdf"
+            className="pill pill-ghost"
+          >
+            Download CV
+            <svg className="cv-arrow" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 5v14M5 12l7 7 7-7" />
+            </svg>
+          </a>
+        </div>
       </section>
 
       <section className="section" data-index="1">
