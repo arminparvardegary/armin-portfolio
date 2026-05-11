@@ -39,14 +39,33 @@ export default function PortfolioApp() {
       })
     );
 
-    const reveals = sections.map((sec) =>
-      gsap.from(sec, {
-        opacity: 0,
-        y: 50,
-        duration: 1.1,
-        ease: 'expo.out',
-        scrollTrigger: { trigger: sec, start: 'top 80%' },
-      })
+    // First section animates on mount (it's already in viewport on load).
+    if (sections[0]) {
+      gsap.fromTo(
+        sections[0],
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 1.2, ease: 'expo.out', delay: 0.15 }
+      );
+    }
+
+    // Other sections fade up when scrolled into view.
+    const reveals = sections.slice(1).map((sec) =>
+      gsap.fromTo(
+        sec,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.1,
+          ease: 'expo.out',
+          scrollTrigger: {
+            trigger: sec,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+            once: true,
+          },
+        }
+      )
     );
 
     const introImages = gsap.utils.toArray<HTMLElement>('.intro-image');
