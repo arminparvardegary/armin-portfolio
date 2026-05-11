@@ -101,7 +101,7 @@ export default function PortfolioApp() {
       <div className="stage">
         <Scene
           section={activeSection}
-          hoveredWork={activeSection === 3 ? hoveredWork : null}
+          hoveredWork={activeSection === 1 ? hoveredWork : null}
           theme={theme}
         />
       </div>

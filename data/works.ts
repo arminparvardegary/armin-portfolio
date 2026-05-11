@@ -83,12 +83,14 @@ export const works: Work[] = [
   },
 ];
 
+// Scroll order is REVERSED: top of page is Contact, bottom is Origin.
+// Indices below match the new scroll-order activeSection state.
 export const sectionImages = [
-  img('armin_cover'),
-  img('armin_about'),
-  img('armin_stack'),
-  img('armin_selected'),
-  img('armin_contact'),
+  img('armin_contact'),  // 0 — top (Contact)
+  img('armin_selected'), // 1 — Work
+  img('armin_stack'),    // 2 — Stack
+  img('armin_about'),    // 3 — About
+  img('armin_cover'),    // 4 — bottom (Origin / Name)
 ];
 
 const svg = (s: string) =>

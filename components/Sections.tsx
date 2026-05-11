@@ -27,78 +27,69 @@ export default function Sections({
   setHoveredWork: (i: number | null) => void;
   openWork: (w: Work) => void;
 }) {
-  const portfolioBtn = useMagnetic<HTMLButtonElement>(0.35);
-  const cvBtn = useMagnetic<HTMLAnchorElement>(0.35);
   const emailRef = useMagnetic<HTMLAnchorElement>(0.2);
   const linkedinRef = useMagnetic<HTMLAnchorElement>(0.4);
+  const getInTouchBtn = useMagnetic<HTMLButtonElement>(0.35);
+  const cvBtn = useMagnetic<HTMLAnchorElement>(0.35);
 
   return (
     <div className="content">
-      <section className="section intro-section" data-index="0">
-        <div
-          className="intro-image intro-img-1"
-          style={{ backgroundImage: `url(${introImages[0]})` }}
-          aria-hidden
-        />
-        <div
-          className="intro-image intro-img-2"
-          style={{ backgroundImage: `url(${introImages[1]})` }}
-          aria-hidden
-        />
-        <div
-          className="intro-image intro-img-3"
-          style={{ backgroundImage: `url(${introImages[2]})` }}
-          aria-hidden
-        />
-        <div
-          className="intro-image intro-img-4"
-          style={{ backgroundImage: `url(${introImages[3]})` }}
-          aria-hidden
-        />
-
-        <Reveal as="h1" className="display name">
-          {'ARMIN\nPARVARDEGARY'}
-        </Reveal>
-        <div className="intro-actions">
-          <button
-            ref={portfolioBtn}
-            className="pill"
-            onClick={() => scrollTo('[data-index="3"]')}
-          >
-            Portfolio
-          </button>
-          <a
-            ref={cvBtn}
-            href="/cv.pdf"
-            download="Armin_Parvardegary_CV.pdf"
-            className="pill pill-ghost"
-          >
-            Download CV
-            <svg className="cv-arrow" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M12 5v14M5 12l7 7 7-7" />
-            </svg>
-          </a>
-        </div>
+      {/* 01 — Contact (now first) */}
+      <section className="section" data-index="0">
+        <span className="kicker">01 / Contact</span>
+        <a
+          ref={emailRef}
+          href={`mailto:${meta.email}`}
+          className="display contact-mail"
+        >
+          hello@hindra.studio
+        </a>
+        <a
+          ref={linkedinRef}
+          href={meta.linkedin}
+          target="_blank"
+          rel="noreferrer"
+          className="contact-secondary"
+        >
+          LinkedIn ↗
+        </a>
       </section>
 
-      <section className="section" data-index="1">
-        <span className="kicker">01 / About</span>
+      {/* 02 — Work */}
+      <section
+        className="section"
+        data-index="1"
+        onMouseLeave={() => setHoveredWork(null)}
+      >
+        <span className="kicker">02 / Selected work</span>
         <Reveal as="h2" className="display">
-          {'Designer.\nEngineer.\nOne mind.'}
+          {'Selected\nwork.'}
         </Reveal>
-        <p className="lead">
-          {meta.role}. Founder of Hindra Studio.
-        </p>
-        <div className="about-meta">
-          <span className="meta-label">Education</span>
-          <span className="meta-value">
-            {meta.education.school} · {meta.education.field} · {meta.education.years}
-          </span>
-        </div>
+        <ul className="works">
+          {works.map((w, i) => (
+            <li
+              key={w.id}
+              className="work-row"
+              onMouseEnter={() => setHoveredWork(i)}
+              onClick={() => openWork(w)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') openWork(w);
+              }}
+            >
+              <span className="work-idx">{w.index}</span>
+              <span className="work-title">{w.title}</span>
+              <span className="work-year">{w.year}</span>
+              <span className="work-arrow"><ArrowUp /></span>
+            </li>
+          ))}
+        </ul>
       </section>
 
+      {/* 03 — Stack */}
       <section className="section" data-index="2">
-        <span className="kicker">02 / Stack</span>
+        <span className="kicker">03 / Stack</span>
         <Reveal as="h2" className="display">
           {'Deep.\nBroad.\nMarketing.'}
         </Reveal>
@@ -128,55 +119,70 @@ export default function Sections({
         />
       </section>
 
-      <section
-        className="section"
-        data-index="3"
-        onMouseLeave={() => setHoveredWork(null)}
-      >
-        <span className="kicker">03 / Selected work</span>
+      {/* 04 — About */}
+      <section className="section" data-index="3">
+        <span className="kicker">04 / About</span>
         <Reveal as="h2" className="display">
-          {'Selected\nwork.'}
+          {'Designer.\nEngineer.\nOne mind.'}
         </Reveal>
-        <ul className="works">
-          {works.map((w, i) => (
-            <li
-              key={w.id}
-              className="work-row"
-              onMouseEnter={() => setHoveredWork(i)}
-              onClick={() => openWork(w)}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') openWork(w);
-              }}
-            >
-              <span className="work-idx">{w.index}</span>
-              <span className="work-title">{w.title}</span>
-              <span className="work-year">{w.year}</span>
-              <span className="work-arrow"><ArrowUp /></span>
-            </li>
-          ))}
-        </ul>
+        <p className="lead">
+          {meta.role}. Founder of Hindra Studio.
+        </p>
+        <div className="about-meta">
+          <span className="meta-label">Education</span>
+          <span className="meta-value">
+            {meta.education.school} · {meta.education.field} · {meta.education.years}
+          </span>
+        </div>
       </section>
 
-      <section className="section" data-index="4">
-        <span className="kicker">04 / Contact</span>
-        <a
-          ref={emailRef}
-          href={`mailto:${meta.email}`}
-          className="display contact-mail"
-        >
-          hello@hindra.studio
-        </a>
-        <a
-          ref={linkedinRef}
-          href={meta.linkedin}
-          target="_blank"
-          rel="noreferrer"
-          className="contact-secondary"
-        >
-          LinkedIn ↗
-        </a>
+      {/* 05 — Origin (now last, no kicker on purpose) */}
+      <section className="section intro-section" data-index="4">
+        <div
+          className="intro-image intro-img-1"
+          style={{ backgroundImage: `url(${introImages[0]})` }}
+          aria-hidden
+        />
+        <div
+          className="intro-image intro-img-2"
+          style={{ backgroundImage: `url(${introImages[1]})` }}
+          aria-hidden
+        />
+        <div
+          className="intro-image intro-img-3"
+          style={{ backgroundImage: `url(${introImages[2]})` }}
+          aria-hidden
+        />
+        <div
+          className="intro-image intro-img-4"
+          style={{ backgroundImage: `url(${introImages[3]})` }}
+          aria-hidden
+        />
+
+        <Reveal as="h1" className="display name">
+          {'ARMIN\nPARVARDEGARY'}
+        </Reveal>
+        <p className="intro-tagline">the beginning lives at the end.</p>
+        <div className="intro-actions">
+          <button
+            ref={getInTouchBtn}
+            className="pill"
+            onClick={() => scrollTo('[data-index="0"]')}
+          >
+            ↑ Get in touch
+          </button>
+          <a
+            ref={cvBtn}
+            href="/cv.pdf"
+            download="Armin_Parvardegary_CV.pdf"
+            className="pill pill-ghost"
+          >
+            Download CV
+            <svg className="cv-arrow" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 5v14M5 12l7 7 7-7" />
+            </svg>
+          </a>
+        </div>
       </section>
     </div>
   );
